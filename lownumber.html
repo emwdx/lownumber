@@ -3,7 +3,7 @@
 </head>
 
 <body>
-<div class = "container">
+<div class = "container-fluid">
 {{renderPage}}
 
 </div>
@@ -36,18 +36,29 @@
 
 
 <template name = "resultsList">
-<div class = "row-fluid">
-<div class = "span6 offset3">
-<table class = "table  table-condensed">
+{{#if results}}
+  <div class = "row-fluid">
+  <div class = "span6 offset3">
+  <table class = "table  table-condensed">
 
-{{#each results}}
-<tr><td class="{{class}}"><h2>{{number}}</h2></td><td><h2>{{name}}</h2></td></tr>
-{{/each}}
-</table>
-</div>
-</div>
+  {{#each results}}
+  <tr><td class="{{class}}"><h2>{{number}}</h2></td><td><h2>{{name}}</h2></td></tr>
+  {{/each}}
+  </table>
+  </div>
+  </div>
+{{else}}
+  {{> resultsNoSuchClass}}
+{{/if}}
 </template>
 
+<template name="resultsNoSuchClass">
+  <div class= "row-fluid">
+    <div class="span6 offset3">
+      <h2> No such class! </h2>
+    </div>
+  </div>
+</template>
 
 <template name = "waiting">
 <div class = "row-fluid">
