@@ -20,7 +20,7 @@
   <ul>
   	<li>Choose a positive number. Keep it secret from others, but submit it below.</li>
   	<li>Anyone with the same number as someone else is out.</li>
-  	<li>Lowest number <span class = "text-info">wins.</span></li>
+  	<li>Lowest number <span class = "text-success">wins.</span></li>
   	  </ul>
   </h3>
   </div>
@@ -29,7 +29,7 @@
   <form class = "main">
   <p class = "text-center"><input class = "pagination-centered" type="number" min="1" max="5000" value="10" style = "font-size:30px; height: 40px;" name = "myNumber" placeholder = "your number"/></p>
   <p class = "text-center"><input class = "pagination-centered" type="text"  style = "font-size:30px; height: 40px;" placeholder = "your name" name = "myName"/></p>
-  <p class = "text-center"><input type = "submit" class = "btn btn-primary pagination-centered" value = "Submit"></button></p>
+  <p class = "text-center"><input type = "submit" class = "btn btn-primary pagination-centered" value = "Submit"></p>
   </form>
   </div>
 </template>
@@ -41,7 +41,7 @@
 <table class = "table  table-condensed">
 
 {{#each results}}
-<tr><td><h2>{{number}}</h2></td><td><h2>{{name}}</h2></td></tr>
+<tr class = {{winClass}}><td ><h2>{{number}}</h2></td><td><h2>{{name}}</h2></td></tr>
 {{/each}}
 </table>
 </div>
@@ -50,6 +50,8 @@
 
 
 <template name = "waiting">
+
+{{#unless lowNumber.finished}}
 <div class = "row-fluid">
 <div class = "span4 offset4">
 <div class = "hero-unit">
@@ -58,13 +60,42 @@
 </div>
 </div>
 </div>
-
+{{/unless}}
+{{#if lowNumber.finished}}
+{{> resultsList}}
+{{/if}}
 </template>
 
 <template name = "all">
+
 {{> entry}}
 {{> waiting}}
-{{> resultsList}}
+
 
 </template>
 
+<template name = "config">
+<div class = "container">
+<div class = "row-fluid">
+<div class = "span6 offset3">
+<p class = "text-center"><h2>
+Close the current collection of results.</h2>
+<button id = "endGame" class = "btn btn-large btn-primary">Show the results!</button>
+</p>
+</div>
+</div>
+</div>
+<div class = "container">
+<div class = "row-fluid">
+<div class = "span6 offset3">
+<p class = "text-center"><h2>
+Generate a new game of LowNumber.</h2>
+<button id = "newGame" class = "btn btn-large btn-primary">Make a new game!</button>
+</p>
+</div>
+</div>
+</div>
+
+
+
+</template>

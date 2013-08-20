@@ -8,3 +8,6 @@ insecure
 preserve-inputs
 bootstrap
 jquery
+standard-app-packages
+page-js-ie-support
+iron-router
